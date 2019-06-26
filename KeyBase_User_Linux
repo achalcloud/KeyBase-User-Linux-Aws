@@ -1,0 +1,58 @@
+How to create key based User
+[ec2-user ~]$ sudo adduser newuser
+[Ubuntu] When adding a user to an Ubuntu system, include the
+--disabled-password parameter with this command to avoid adding a password to
+the account.
+[ubuntu ~]$ sudo adduser newuser --disabled-password
+[ec2-user ~]$ sudo su - newuser
+[newuser ~]$
+[newuser ~]$ mkdir .ssh
+[newuser ~]$ chmod 700 .ssh
+[newuser ~]$ cd .ssh
+[newuser ~]$ ssh-keygen (press continious enter enter )
+[newuser ~]$ mv id_rsa.pub authorized_keys
+[newuser ~]$ chmod 600 .ssh/authorized_keys
+[newuser ~]$ cat id_rsa
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA5Dr4zwPznVzT8BYkPpKBFy6rJ7COKWkOyzEHj5zZNlZ1ckMZ
+rcHoaZxIgt/7dT5qwMpG3HlJlw76mjwmKweIqLhJAz/fGMvduaqIqQC9YEdOH2Ly
+9S2HseITlRfEXDcHJRdQC/pJrOaNSanyVetlE1whY7j827wgQ6xjnqpBskHDpd57
+ajdMbxm4DITb68I/XvJ8CW/sqWVLMD7lguGM4ODn+zjHV+HwgEhMOenSNJYFHxl+
+Sow0d8d52XmEPmzskyrZXcA+z2QQpDdEtkqPbHCfRJk/A3SfQAllzEPRCeYS2hxR
+F+NPwde7B6W6bmSNvksbizCgVnZQPcugBfMz/wIDAQABAoIBAGFrIqUKpMP4yaZj
+bRkgY+XHT9tjK2tVorDsvrN4WectxHf/WEioylG6GeFzRdxnxh2AufqF8vl9tU58
+ejZHwvdxogi3DL2C16PWvPqWjD86cIhJLjelNZSiUYWEXZaXDn+wkcRrE2OwDYLx
+/bTbA4vd+YqdfaE1jfgU73jcZ6p0RXb9vT13PoqgJa/dlpicAVX0yH9us/oM+IG9
+236ClY9kgYtZwRNpZlR6lmvzFtOEHwNMjp8l+k0qBx6KgQmQzG9eRR1uMubaN9/i 
+Zg4AwHisiA9iO6VTfXsqQwH+ezq3VqqNVvrsI3qEgeDFv/SKBncXm+uCfqEFv6no
+sSbQeeECgYEA9HwxISfGYegBsnAPDwD2ejTqwZKzGWTtzlD0UHDBJZsGn+AD93aP
++3yq7/BMuy/uWt6z2SnXvsRtQjQrLK2SXWT+2ELZKz8Ya/aAlkqjFxfInOaHvF9Z
+XbVEkWGrKwB1rlrTCvzq2R42r3ciTdWRGs/V+3pSICJmVEUXeVxVAfkCgYEA7vrK
++4gwMprfbVUfca0lnmGPPMuiBGdAZDryrm9cH9/L0F8K5RnC58z5AyFQx2CnbBnR
+obnkozV//dcvMdfjWDc+W4Xxc3XRy6TjoiK/Qlx7DRNH5YQtGAHZQQW3Z3xNOGzf
+pzeV9F9u7cGIDFJzxYDJeSKLt2P1CVE7DPOn47cCgYA9uJCqnyD9HJY5FwMmNYcE
+CRHu9nsSgSFsAZH8MMsCFGYSvHoj4iGtSqbY1iB47TvOYwSiYWbe+TXgDc2MhPE7
+dMDFlfK/cTlYIC4MQyFzNgTmX2iLDMNB3f5GeZK902riLnmy/3DGiVMi7v+RCMaO
+L0QFLbdH94c/5QVtFPs8+QKBgQCp9YEAzIWCp/R4nE5lmT+k2Tt2gFg0i34XCnln
+p1k8bfxUsBNehijAlF0QZdQ+R7YqQl59h2hczoK9dBljeGd+aKOXkbX7aHKRQy6F
+M/MT7hOxY+IBEDTF2yK4hKlAFv4QQBX7paOnDWwl+TqZkNY3Q3WGChSVk6hEPRoj
+BvKDFwKBgQCEef/jFkGzu6HJqno3Hz8XIdXqNhR69oyGUaejHT/jkxN2BFiExW08
+5q152JKcmv4Dsrjv5GFI9ajxZjq2LpnFV8ExWsr3Zc0jB7gLNJ1fDvzpAej3nkOX
+A78i7KVIENLXb/OPtfgvlQSNjAcRdxvWF9lY0WMmRliYdTK7oVal6g==
+-----END RSA PRIVATE KEY-----
+[newuser ~]$ copy avobe id_rsa and paste it in note paid and save it as .pem
+Now we have to give a password less sudo access to this this user .
+[newuser ~]$ visudo
+achal ALL = (ALL) NOPASSWD: ALL
+here achal is a user paste avove line in visudo files and save it .
+Now you can access the server with this user.
+For more reference go through below link .
+1.
+ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/managing-users.
+html 
+2.
+ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.ht
+ml
+3.
+ https://aws.amazon.com/premiumsupport/knowledge-center/new-user-ac
+counts-linux-instance/
